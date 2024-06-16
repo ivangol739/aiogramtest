@@ -4,7 +4,7 @@ import logging
 
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 
 load_dotenv()
@@ -19,6 +19,11 @@ async def cmd_start(message: Message):
   await message.answer("Как дела ?")
   # await message.answer_photo(photo='https://sudoteach.com/static/assets/img/aiogram-banner.jpg',
   #                              caption='Картинка')
+
+
+@dp.message(Command('help'))
+async def cmd_help(message: Message):
+  await message.answer(f"{message.from_user.first_name}, вам нужна помощь ?")
   
   
 @dp.message(F.text == "привет")
