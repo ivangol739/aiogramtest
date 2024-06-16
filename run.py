@@ -1,7 +1,9 @@
 import os
+import asyncio
+import logging
+
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
-import asyncio
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 
@@ -13,7 +15,10 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
-  await message.answer(text="Привет!")
+  await message.reply("Привет!")
+  await message.answer("Как дела ?")
+  # await message.answer_photo(photo='https://sudoteach.com/static/assets/img/aiogram-banner.jpg',
+  #                              caption='Картинка')
   
   
 @dp.message()
@@ -26,6 +31,7 @@ async def main():
   
 
 if __name__ == '__main__':
+  logging.basicConfig(level=logging.INFO)
   try:
     asyncio.run(main())
   except KeyboardInterrupt:
