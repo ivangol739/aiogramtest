@@ -17,6 +17,13 @@ async def cmd_start(message: Message):
   #                              caption='Картинка')
 
 
+@router.message(Command('test'))
+async def cmd_test(message: Message):
+  await message.bot.send_message(chat_id=message.chat.id,
+                                 message_thread_id=message.message_thread_id,
+                                 test="OK")
+
+
 @router.message(Command('help'))
 async def cmd_help(message: Message):
   await message.answer(f"{message.from_user.first_name}, вам нужна помощь ?")
