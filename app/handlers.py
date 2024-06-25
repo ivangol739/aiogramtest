@@ -4,6 +4,10 @@ from aiogram import F, Router
 from aiogram.enums import ChatAction
 import asyncio
 
+
+import app.keyboards as kb
+
+
 router = Router()
 
 @router.message(CommandStart())
@@ -11,7 +15,7 @@ async def cmd_start(message: Message):
   await message.bot.send_chat_action(chat_id=message.from_user.id,
                                      action=ChatAction.TYPING)
   await asyncio.sleep(2)
-  await message.reply("Привет!")
+  await message.reply("Привет!", reply_markup=kb.main)
   await message.answer("Как дела ?")
   # await message.answer_photo(photo='https://sudoteach.com/static/assets/img/aiogram-banner.jpg',
   #                              caption='Картинка')
